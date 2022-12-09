@@ -10,7 +10,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import androidx.test.core.app.ActivityScenario
 import com.yape.recipes.databinding.FragmentRecipeDetailBinding
+import com.yape.recipes.presentation.MainActivity
 import com.yape.recipes.utils.extensions.loadImage
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -23,7 +25,10 @@ class RecipeDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.setRecipe(recipe = args.recipe)
+        args.recipe?.let {
+            viewModel.setRecipe(recipe = it)
+        }
+
     }
 
     override fun onCreateView(
@@ -41,7 +46,7 @@ class RecipeDetailFragment : Fragment() {
 
     private fun setupView() = with(binding){
         viewModel.getRecipe()?.let { recipe ->
-            (activity as AppCompatActivity).supportActionBar?.title = recipe.name
+            (activity as? AppCompatActivity)?.supportActionBar?.title = recipe.name
 
             imageRecipeDetail.loadImage(recipe.image)
             recipe.ingredients.forEach {

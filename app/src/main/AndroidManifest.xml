@@ -29,6 +29,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:theme="@style/Theme.Recipes.NoActionBar"
+            android:name="androidx.fragment.app.FragmentActivity"/>
     </application>
 
 </manifest>

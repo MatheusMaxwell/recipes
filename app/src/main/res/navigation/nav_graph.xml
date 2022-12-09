@@ -23,6 +23,7 @@
 
         <argument
             android:name="recipe"
+            app:nullable="true"
             app:argType="com.yape.recipes.domain.models.RecipeDomain" />
 
     </fragment>
