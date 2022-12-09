@@ -2,7 +2,6 @@ package com.yape.recipes.data.repository
 
 import com.yape.recipes.data.dataSource.remote.DataSourceRemote
 import com.yape.recipes.data.mapper.toDomain
-import com.yape.recipes.data.models.Recipe
 import com.yape.recipes.domain.models.RecipeDomain
 import com.yape.recipes.utils.extensions.toGenericErrorResult
 import com.yape.recipes.utils.genericResult.GenericResult

@@ -10,12 +10,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import androidx.test.core.app.ActivityScenario
 import com.yape.recipes.databinding.FragmentRecipeDetailBinding
-import com.yape.recipes.presentation.MainActivity
 import com.yape.recipes.utils.extensions.loadImage
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 
 class RecipeDetailFragment : Fragment() {

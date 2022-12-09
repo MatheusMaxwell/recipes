@@ -1,6 +1,5 @@
 package com.yape.recipes.data.repository
 
-import com.yape.recipes.data.models.Recipe
 import com.yape.recipes.domain.models.RecipeDomain
 import com.yape.recipes.utils.genericResult.GenericResult
 
