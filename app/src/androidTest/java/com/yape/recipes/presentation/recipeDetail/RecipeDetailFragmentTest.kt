@@ -1,9 +1,12 @@
 package com.yape.recipes.presentation.recipeDetail
 
+import android.content.Intent
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.intent.Intents
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.yape.recipes.R
@@ -21,6 +24,7 @@ class RecipeDetailFragmentTest {
     private val viewModel = RecipeDetailViewModel()
     private val recipe = RecipeDomain(0, "", "Receita 1", "Modo de preparo",
         listOf("tomate", "cebolla"), "", "")
+
 
     @Before
     fun setup(){
@@ -44,8 +48,9 @@ class RecipeDetailFragmentTest {
     @Test
     fun verifyIngredientsIsVisible(){
         onView(withText(R.string.ingredients)).check(matches(isDisplayed()))
-        onView(withText("- ${recipe.ingredients.first()}")).check(matches(isDisplayed()))
-        onView(withText("- ${recipe.ingredients.last()}")).check(matches(isDisplayed()))
+        recipe.ingredients.forEach { ingredient ->
+            onView(withText("- $ingredient")).check(matches(isDisplayed()))
+        }
     }
 
     @Test
@@ -55,7 +60,10 @@ class RecipeDetailFragmentTest {
     }
 
     @Test
-    fun clickOnMapButton(){
+    fun verifyIntentWhenClickOnMapButton(){
+        Intents.init()
         onView(withId(R.id.btn_map)).perform(click())
+        Intents.intended(hasAction(Intent.ACTION_VIEW))
+        Intents.release()
     }
 }

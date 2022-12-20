@@ -102,10 +102,12 @@ class RecipesListFragment : Fragment() {
                     is ViewState.Empty -> {
                         binding.loading.progressLoading.makeGone()
                         createRecipesList(emptyList())
+                        binding.txtEmptyState.makeVisible()
                     }
                     is ViewState.Success -> {
                         binding.loading.progressLoading.makeGone()
                         createRecipesList(viewState.data)
+                        binding.txtEmptyState.makeGone()
                     }
                     is ViewState.Error -> {
                         binding.loading.progressLoading.makeGone()

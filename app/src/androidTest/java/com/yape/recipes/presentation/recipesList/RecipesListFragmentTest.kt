@@ -85,6 +85,24 @@ class RecipesListFragmentTest {
         }
     }
 
+    @Test
+    fun checkRecipeListEmptyStateWithError(){
+        repository.hasError = true
+
+        launchFragmentInContainer<RecipesListFragment>(null, R.style.Theme_Recipes_NoActionBar)
+
+        onView(withText(R.string.recipe_list_empty)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun checkRecipeListEmptyStateWithListEmpty(){
+        repository.hasEmptyList = true
+
+        launchFragmentInContainer<RecipesListFragment>(null, R.style.Theme_Recipes_NoActionBar)
+
+        onView(withText(R.string.recipe_list_empty)).check(matches(isDisplayed()))
+    }
+
     private fun typeSearchViewText(text: String): ViewAction {
         return object : ViewAction {
             override fun getDescription(): String {

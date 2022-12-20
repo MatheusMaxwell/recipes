@@ -8,6 +8,7 @@ import com.yape.recipes.utils.genericResult.GenericSuccessResult
 class MockRepository: Repository {
 
     var hasError = false
+    var hasEmptyList = false
 
     private val recipe = RecipeDomain(
         id = 0,
@@ -22,14 +23,21 @@ class MockRepository: Repository {
         return if(hasError){
             GenericResult.Error(GenericErrorResult.Unknown(Throwable()))
         } else{
-            GenericResult.Success(GenericSuccessResult.Populated(
-                listOf(
-                    recipe,
-                    recipe.copy(id = 1, name = "Teste 2"),
-                    recipe.copy(id = 2, name = "Receita 2", ingredients = listOf("Carne, Ajo"))
+            if(hasEmptyList){
+                GenericResult.Success(GenericSuccessResult.Empty())
+            }
+            else{
+                GenericResult.Success(GenericSuccessResult.Populated(
+                    listOf(
+                        recipe,
+                        recipe.copy(id = 1, name = "Teste 2"),
+                        recipe.copy(id = 2, name = "Receita 2", ingredients = listOf("Carne, Ajo"))
+                    )
+                    )
                 )
-            )
-            )
+            }
+
+
         }
     }
 }
